@@ -11,7 +11,8 @@ const VerifyEmailPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users/verify`, { code });
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/verify`, { code });
+
             alert('Verification successful');
         } catch (error) {
             console.error(error);

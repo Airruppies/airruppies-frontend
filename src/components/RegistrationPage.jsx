@@ -16,7 +16,7 @@ const RegistrationPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users/register`, form);
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/vi/register`, form);
             alert('Registration successful');
         } catch (error) {
             console.error(error);

@@ -14,7 +14,7 @@ const LoginPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users/login`, form);
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/login`, form);
             alert('Login successful');
         } catch (error) {
             console.error(error);
