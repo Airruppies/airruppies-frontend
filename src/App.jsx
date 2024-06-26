@@ -1,19 +1,18 @@
-import { useState } from 'react'
-import './App.css'
-import LoginPage from './components/LoginPage'
-import RegistrationPage from './components/RegistrationPage'
-import VerifyEmailPage from './components/VerifyEmailPage'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LoginPage from './components/LoginPage';
+import RegistrationPage from './components/RegistrationPage';
+import VerifyEmailPage from './components/VerifyEmailPage';
 
 function App() {
-  // const [count, setCount] = useState(0)
-
   return (
-    <>
-    <LoginPage />
-    <RegistrationPage />
-    <VerifyEmailPage />
-    </>
-  )
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/verify-email" element={<VerifyEmailPage />} />
+        </Routes>
+      </Router>
+  );
 }
 
-export default App
+export default App;
