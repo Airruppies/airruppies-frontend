@@ -8,6 +8,7 @@ const RegistrationPage = () => {
         email: '',
         password: ''
     });
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -15,23 +16,56 @@ const RegistrationPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/vi/register`, form);
+            const response = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/users/register`, form);
             alert('Registration successful');
         } catch (error) {
             console.error(error);
-            alert('Registration failed');
+            setError('Registration failed');
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8 p-4 border rounded-lg shadow-lg">
-            <input type="text" name="firstName" placeholder="First Name" onChange={handleChange} className="mb-4 p-2 border rounded w-full" />
-            <input type="text" name="lastName" placeholder="Last Name" onChange={handleChange} className="mb-4 p-2 border rounded w-full" />
-            <input type="email" name="email" placeholder="Email" onChange={handleChange} className="mb-4 p-2 border rounded w-full" />
-            <input type="password" name="password" placeholder="Password" onChange={handleChange} className="mb-4 p-2 border rounded w-full" />
-            <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">Register</button>
-        </form>
+        <div className="max-w-md mx-auto mt-8 p-4 border rounded-lg shadow-lg">
+            <h2 className="text-2xl font-bold mb-4">Register</h2>
+            {error && <p className="text-red-500 mb-4">{error}</p>}
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    onChange={handleChange}
+                    className="mb-4 p-2 border rounded w-full"
+                    required
+                />
+                <input
+                    type="text"
+                    name="lastName"
+                    placeholder="Last Name"
+                    onChange={handleChange}
+                    className="mb-4 p-2 border rounded w-full"
+                    required
+                />
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    onChange={handleChange}
+                    className="mb-4 p-2 border rounded w-full"
+                    required
+                />
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={handleChange}
+                    className="mb-4 p-2 border rounded w-full"
+                    required
+                />
+                <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">Register</button>
+            </form>
+        </div>
     );
 };
 
