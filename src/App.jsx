@@ -11,6 +11,7 @@ function App() {
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/verify-email" element={<VerifyEmailPage />} />
       </Routes>
+      {/*  */}
     </Router>
   );
 }
