@@ -15,7 +15,7 @@ const LoginPage = () => {
         e.preventDefault();
         try {
             const response = await axios.post(
-                'https://airruppies-backend.onrender.com/api/users/login',
+                'https://airruppies-backend.onrender.com/api/v1/login',
                 credentials,
                 {
                     headers: {

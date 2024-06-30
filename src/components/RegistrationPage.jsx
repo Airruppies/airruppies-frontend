@@ -17,7 +17,7 @@ const RegistrationPage = () => {
         e.preventDefault();
         try {
             const response = await axios.post(
-                'https://airruppies-backend.onrender.com/api/users/register',
+                'https://airruppies-backend.onrender.com/api/v1/register',
                 formData,
                 {
                     headers: {

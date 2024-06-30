@@ -13,7 +13,7 @@ const VerifyEmailPage = () => {
         e.preventDefault();
         try {
             const response = await axios.post(
-                'https://airruppies-backend.onrender.com/api/users/verify-email',
+                'https://airruppies-backend.onrender.com/api/v1/verify-email',
                 { email, verificationCode },
                 {
                     headers: {
