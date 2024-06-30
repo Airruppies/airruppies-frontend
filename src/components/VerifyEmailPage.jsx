@@ -2,29 +2,37 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const VerifyEmailPage = () => {
-    const [code, setCode] = useState('');
+    const [verificationCode, setVerificationCode] = useState('');
+    const [email, setEmail] = useState(''); // Assuming you have the email available somehow, maybe passed down as a prop or stored in localStorage/sessionStorage
 
     const handleChange = (e) => {
-        setCode(e.target.value);
+        setVerificationCode(e.target.value);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/verify`, { code });
-
-            alert('Verification successful');
+            const response = await axios.post('https://airruppies-backend.onrender.com/api/users/verify-email', { email, verificationCode }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log('Email verification successful:', response.data);
+            // Handle successful verification (e.g., redirect to login page)
         } catch (error) {
-            console.error(error);
-            alert('Verification failed');
+            console.error('Email verification failed:', error);
+            alert('Email verification failed');
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8 p-4 border rounded-lg shadow-lg">
-            <input type="text" name="code" placeholder="6-digit code" onChange={handleChange} className="mb-4 p-2 border rounded w-full" />
-            <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">Verify</button>
-        </form>
+        <div>
+            <h2>Verify Email</h2>
+            <form onSubmit={handleSubmit}>
+                <input type="text" name="verificationCode" value={verificationCode} onChange={handleChange} placeholder="Enter verification code" required />
+                <button type="submit">Verify</button>
+            </form>
+        </div>
     );
 };
 
