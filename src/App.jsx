@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './LoginPage';
-import RegistrationPage from './RegistrationPage';
-import VerifyEmailPage from './VerifyEmailPage';
-import NotFoundPage from './NotFoundPage';
+import LoginPage from './components/LoginPage.jsx';
+import RegistrationPage from './components/RegistrationPage.jsx';
+import VerifyEmailPage from './components/VerifyEmailPage.jsx';
+import NotFoundPage from './components/NotFoundPage.jsx';
 
 function App() {
     return (
